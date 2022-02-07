@@ -17,6 +17,7 @@ def display():
         print(f"${float(COSTEXTRA[i])}             {EXTRA[i]}")
 #end of task 1: days available not neede because there are tickets for everyday :D
 #dunno if i should add days into booking: mon, tue...
+display()
 
 booking = "y"
 while booking == "y":
@@ -26,7 +27,6 @@ while booking == "y":
     else:
         uniqueID.append(uniqueID[-1]+1)
 
-    visitLength = int(input("Visiting for 1 or 2 days?: "))
     while visitLength != 1 and visitLength != 2:
         print("Enter 1 or 2.")
         visitLength = int(input("Visiting for 1 or 2 days?: "))
