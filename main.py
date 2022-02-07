@@ -89,6 +89,8 @@ while booking == "y":
         while bbq < 0:
             print("Number has to greater than 0.")
             bbq = int(input("Input number of bbq tickets: "))
+            
+        #can allow for booking cancellation here
         
         #it's fine to use this variable names because the look is an if loop so only one of conditional loop will run (variables will not clash with each other)
         totalNormal = (adult*COSTTWO[0]) + (child*COSTTWO[1]) + (senior*COSTTWO[2]) 
