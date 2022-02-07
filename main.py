@@ -3,12 +3,17 @@ EXTRA = ["Lion feeding", "Penguin feeding", "Evening barbecue (two-day tickets o
 COSTONE = [20, 12, 16, 60, 15]
 COSTTWO = [30, 18, 24, 90, 22.5] 
 COSTEXTRA = [2.5, 2, 5.00]
+DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 #pretty much for printing usage maybe cal
 uniqueID = []
 totalCost = []
 
 #task 1
 def display():
+    print("Days available for booking: ", end="")
+    for i in DAYS:
+        print(i, end=" ")
+    print() #to end the end="" also serves as a visual divider
     print("\nOne day  Two days   Ticket type")
     for i in range(len(TICKETNAMES)): #prints main list of ticket types
         print(f"${float(COSTONE[i])}    ${float(COSTTWO[i])}      {TICKETNAMES[i]}")
@@ -26,7 +31,12 @@ while booking == "y":
         uniqueID.append(0)
     else:
         uniqueID.append(uniqueID[-1]+1)
-
+    
+    visitDay = input("Enter the day/first day of visit:\n")
+    while visitDay not in DAYS:
+        visitDay = input("ERROR, enter the day/first day of visit:\n")
+        visitLength = int(input("Visiting for 1 or 2 days?: "))
+    
     while visitLength != 1 and visitLength != 2:
         print("Enter 1 or 2.")
         visitLength = int(input("Visiting for 1 or 2 days?: "))
@@ -106,7 +116,7 @@ while booking == "y":
             print("---BEST VALUE discount---\nDear valued customer, you are qualified for a BEST VALUE discount.\nQuote your unique booking ID at the ticket office upon arrival.")
         
     print("BOOKING DETAILS")
-    print(f"Unique booking ID: {uniqueID[-1]}\nTotal cost: ${totalCost[-1]}")
+    print(f"Unique booking ID: {uniqueID[-1]}\nDay: {visitDay}\nTotal cost: ${totalCost[-1]}")
 
     booking = input("Press 'y' to start another booking, or press any other key to exit: ")
 
