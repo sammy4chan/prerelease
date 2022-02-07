@@ -26,8 +26,8 @@ while booking == "y":
         uniqueID.append(0)
     else:
         uniqueID.append(uniqueID[-1]+1)
-    
-    visitLength = int(input("Visiting for 1 or 2 days?: "))
+
+    visitLength = int(input("Visitng for 1 or 2 days?: "))
     while visitLength != 1 and visitLength != 2:
         print("Enter 1 or 2.")
         visitLength = int(input("Visiting for 1 or 2 days?: "))
@@ -90,9 +90,9 @@ while booking == "y":
         while bbq < 0:
             print("Number has to greater than 0.")
             bbq = int(input("Input number of bbq tickets: "))
-            
-        #can allow for booking cancellation here
         
+        #can allow for booking cancellation here
+
         #it's fine to use this variable names because the look is an if loop so only one of conditional loop will run (variables will not clash with each other)
         totalNormal = (adult*COSTTWO[0]) + (child*COSTTWO[1]) + (senior*COSTTWO[2]) 
         totalOthers = (family*COSTTWO[3]) + (group*COSTTWO[4]) 
@@ -114,7 +114,7 @@ while booking == "y":
     booking = input("Press 'y' to start another booking, or press any other key to exit: ")
 
 #program check
-print("Bookings completed.")
+print("\n-----Bookings completed-----")
 for i in range(len(uniqueID)):
     print(f"Unique booking ID: {uniqueID[i]} Booking cost: ${totalCost[i]}")
 
