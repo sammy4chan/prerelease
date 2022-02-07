@@ -26,7 +26,8 @@ while booking == "y":
         uniqueID.append(0)
     else:
         uniqueID.append(uniqueID[-1]+1)
-
+    
+    visitLength = int(input("Visiting for 1 or 2 days?: "))
     while visitLength != 1 and visitLength != 2:
         print("Enter 1 or 2.")
         visitLength = int(input("Visiting for 1 or 2 days?: "))
