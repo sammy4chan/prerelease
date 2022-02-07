@@ -48,9 +48,13 @@ while booking == "y":
         adult = int(input("Input number of adult tickets: "))
 
     child = int(input("Input number of child tickets: "))
-    while child < 0:
-        print("Number has to be greater than 0.")
-        child = int(input("Input number of children tickets: "))
+    while adult < (child/2) or child < 0:
+        if child < 0: #if statements to return different error messages. one of the cons about 2 conditioned while statements
+            print("Number has to be greater than 0.")
+            child = int(input("Input number of children tickets: "))
+        elif adult < (child/2):
+            print("There are not enough adults for children.")
+            child = int(input("Input number of children tickets: "))
 
     senior = int(input("Input number of senior tickets: "))
     while senior < 0:
