@@ -3,7 +3,7 @@ EXTRA = ["Lion feeding", "Penguin feeding", "Evening barbecue (two-day tickets o
 COSTONE = [20, 12, 16, 60, 15]
 COSTTWO = [30, 18, 24, 90, 22.5] 
 COSTEXTRA = [2.5, 2, 5.00]
-DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+DAYS = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",) #comma and () for tuple
 #pretty much for printing usage maybe cal
 uniqueID = []
 totalCost = []
