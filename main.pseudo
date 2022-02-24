@@ -38,4 +38,19 @@ WHILE booking = "y" DO
     IF len(uniqueID) = 0:
         uniqueID.append(0)
     ELSE
-        uniqueID.append(uniqueID[-1]+1) // 
+        uniqueID.append(uniqueID[-1]+1) //takes value of last index and adds 1 to it
+
+    OUTPUT "Enter the day/first day of visit: "
+    INPUT visitDay
+    WHILE visitDay not in DAYS DO
+        OUTPUT = "ERROR, enter the day/first day of visit: "
+        INPUT visitDay
+    
+    OUTPUT "Visiting for 1 or 2 days?: "
+    INPUT visitLength
+    WHILE visitLength != 1 && visitLength != 2 DO
+        OUTPUT "Visiting for 1 or 2 days?: "
+        INPUT visitLength
+    
+    //tickets input
+    
