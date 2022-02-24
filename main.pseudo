@@ -35,22 +35,131 @@ OUTPUT "Evening barbeque (two-day tickets only): $5"
 
 booking <- "y"
 WHILE booking = "y" DO
-    IF len(uniqueID) = 0:
-        uniqueID.append(0)
-    ELSE
-        uniqueID.append(uniqueID[-1]+1) //takes value of last index and adds 1 to it
+    IF len(uniqueID) = 0
+        THEN
+            uniqueID.append(0)
+        ELSE
+            uniqueID.append(uniqueID[-1]+1) //takes value of last index and adds 1 to it
+    ENDIF
+    
 
     OUTPUT "Enter the day/first day of visit: "
     INPUT visitDay
     WHILE visitDay not in DAYS DO
         OUTPUT = "ERROR, enter the day/first day of visit: "
         INPUT visitDay
+    ENDWHILE
     
     OUTPUT "Visiting for 1 or 2 days?: "
     INPUT visitLength
     WHILE visitLength != 1 && visitLength != 2 DO
-        OUTPUT "Visiting for 1 or 2 days?: "
+        OUTPUT "Error. Enter 1 or 2. \nVisiting for 1 or 2 days?: "
         INPUT visitLength
+    ENDWHILE
     
     //tickets input
+    OUTPUT "Input number of adult tickets: "
+    INPUT adult
+    WHILE adult < 0 DO
+        OUTPUT "Number has to be greater than 0.\nInput number of adult tickets: "
+        INPUT adult
+    ENDWHILE
     
+    OUTPUT "Input number of child tickets: "
+    INPUT child
+    WHILE adult < 0 || adult < (child/2) DO
+        IF child < 0
+            THEN
+                OUTPUT "Number has to be greater than 0.\nInput number of children tickets: "
+                INPUT child
+        ENDIF
+        IF adult < (child/2)
+            THEN
+                OUTPUT "There are not enough adults for children.\nInput number of children tickets: "
+                INPUT child
+    ENDWHILE
+    
+    OUTPUT "Input number of senior tickets: "
+    INPUT senior
+    WHILE senior < 0 DO
+        OUTPUT "Number has to be greater than 0.\nInput number of senior tickets: "
+        INPUT senior
+    ENDWHILE
+
+    OUTPUT "Input number of family tickets: "
+    INPUT family
+    WHILE family < 0 DO
+        OUTPUT "Number has to be greater than 0.\nInput number of senior tickets: "
+        INPUT family
+    ENDWHILE
+
+    OUTPUT "Input number of people in group: "
+    INPUT group
+    WHILE group < 6 DO
+        if group = 0
+            THEN
+                break
+        ENDIF
+        OUTPUT "Number has to be greater than 5.\nInput number of group tickets: "
+        INPUT group
+    ENDWHILE
+
+    OUTPUT "Input number of lion feeding tickets: "
+    INPUT lion
+    WHILE lion < 0 DO
+        OUTPUT "Number has to be greater than 0.\nInput number of lion feeding tickets"))
+        INPUT lion
+    ENDWHILE
+
+    OUTPUT "Input number of penguin feeding tickets: "
+    INPUT penguin
+    WHILE penguin < 0 DO
+        OUTPUT "Number has to be greater than 0.\nInput number of penguin feeding tickets: "
+        INPUT penguin
+    ENDWHILE
+
+    IF visitLength = 1
+        THEN
+            totalNormal <- (adult*COSTONE[0]) + (child*COSTONE[1]) + (senior*COSTONE[2])
+            totalOthers <- (family*COSTONE[3]) + (group*COSTONE[4]) 
+            totalAttractions <- (lion*COSTEXTRA[0]) + (penguin*COSTEXTRA[1])
+
+            totalCost.append(totalNormal + totalOthers + totalAttractions) //add to list (technically no append in pseudocode)
+
+            IF (adult+child+senior) > 5 && totalNormal > (COSTONE[4]*(adult+child+senior)
+                THEN
+                OUTPUT "\nIMPORTANT: A GROUP ticket would be cheaper.\n---BEST VALUE discount---\nDear valued customer, you are qualified for a BEST VALUE discount.\nQuote your unique booking ID at the ticket office upon arrival.")
+            ENDIF
+
+            IF (adult+senior) > 1 and child > 2 and totalNormal > COSTONE[3]
+                THEN
+                    print("\nIMPORTANT: A FAMILY ticket would be cheaper.\n---BEST VALUE discount---\nDear valued customer, you are qualified for a BEST VALUE discount.\nQuote your unique booking ID at the ticket office upon arrival.")
+            ENDIF
+        ELSE
+            OUTPUT "Input number of barbeque tickets: "
+            INPUT bbq
+            WHILE bbq < 0 DO
+                OUTPUT "Number has to greater than 0.Input number of bbq tickets: "
+                INPUT bbq
+            ENDWHILE
+
+            totalNormal <- (adult*COSTTWO[0]) + (child*COSTTWO[1]) + (senior*COSTTWO[2]) 
+            totalOthers <- (family*COSTTWO[3]) + (group*COSTTWO[4]) 
+            totalAttractions <- (lion*COSTEXTRA[0]) + (penguin*COSTEXTRA[1]) + (bbq*COSTEXTRA[2])
+            totalCost.append(totalNormal + totalOthers + totalAttractions)
+
+            IF (adult+child+senior) > 5 && totalNormal > (COSTTWO[4]*(adult+child+senior))
+                THEN
+                    OUTPUT "\nIMPORTANT: A GROUP ticket would be cheaper.\n---BEST VALUE discount---\nDear valued customer, you are qualified for a BEST VALUE discount.\nQuote your unique booking ID at the ticket office upon arrival."
+            ENDIF
+
+            IF (adult+senior) > 1 && child > 2 && totalNormal > COSTTWO[3]
+                THEN
+                    OUTPUT "\nIMPORTANT: A FAMILY ticket would be cheaper.\n---BEST VALUE discount---\nDear valued customer, you are qualified for a BEST VALUE discount.\nQuote your unique booking ID at the ticket office upon arrival."
+            ENDIF
+
+            OUTPUT "\n---BOOKING DETAILS---\nUnique booking ID: ", uniqueID[-1], "\nDay: ", visitDay, "\n Total cost: $", totalCost
+
+            OUTPUT "\nPress 'y' to start another booking, or press any other key to exit: \nPress 'y' to start another booking, or press any other key to exit: "
+            INPUT booking
+ENDWHILE
